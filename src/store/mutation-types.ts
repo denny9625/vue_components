@@ -1,0 +1,2 @@
+export const SET_USERTOKEN = "SET_USERTOKEN";
+export const SET_DEVICENUMBER = "SET_DEVICENUMBER";

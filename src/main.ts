@@ -1,13 +1,17 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-import './registerServiceWorker';
+import Vue from "vue";
+import App from "@/App.vue";
+import router from "@/router";
+import store from "@/store";
+import Vant from "vant";
+import "../rem";
+import "vant/lib/index.css";
 
 Vue.config.productionTip = false;
+Vue.use(Vant);
+Vue.prototype.$store = store;
 
 new Vue({
   router,
   store,
   render: (h) => h(App),
-}).$mount('#app');
+}).$mount("#app");

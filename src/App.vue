@@ -1,20 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <transition :name="transitionName">
+      <router-view />
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+// tslint:disable
+import { Component, Vue, Watch } from "vue-property-decorator";
+// import HelloWorld from './components/HelloWorld.vue';
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+  name: "App",
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private transitionName: string = "slide-left";
+
+  @Watch("$route")
+  watchRoute(to: any, from: any) {
+    if (to.meta.index > from.meta.index) {
+      // 设置动画名称
+      this.transitionName = "slide-left";
+    } else {
+      this.transitionName = "slide-right";
+    }
+  }
+}
 </script>
 
 <style lang="less">
@@ -23,7 +35,34 @@ export default class App extends Vue {}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-overflow-scrolling: touch;
+}
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
 }
 </style>
