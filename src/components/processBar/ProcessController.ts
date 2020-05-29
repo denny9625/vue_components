@@ -20,10 +20,10 @@ export default class ProcessFun {
     this.tColor = color;
     this.bgColor = bgColor;
   }
-  public clearFill() {
+  clearFill() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   }
-  public fill(x: number) {
+  fill(x: number) {
     this.fillBg();
     this.fillArc(x);
     this.fillText(x);

@@ -28,7 +28,7 @@ let list: PriceList[] = [
   { name: "test4", l_index: 3 },
 ];
 
-const list1: any = [];
+let list1: Array<any> = [];
 
 list.forEach((item) => {
   const obj = Object.create(item);
@@ -36,6 +36,11 @@ list.forEach((item) => {
   obj.l_index = list.length + list1.length;
   list1.push(obj);
 });
+// list1 = list.flat()
+// list1.forEach((item) => {
+//   item.l_index = list1.length + list1.indexOf(item)
+// })
+// console.log('list1', list1)
 
 for (const i in list) {
   if (list.hasOwnProperty(i)) {
@@ -51,7 +56,7 @@ interface PriceList {
 }
 
 @Component
-export default class About extends Vue {
+export default class MassageLoop extends Vue {
   private prizeList: PriceList[] = [];
   private activeIndex: number = 0;
   private intnum: any;

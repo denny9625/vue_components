@@ -12,7 +12,7 @@ var vConsolePlugin = require('vconsole-webpack-plugin');
 const port = 8080; // dev port
 
 module.exports = {
-  publicPath: "/h5",
+  publicPath: "/",
   outputDir: "dist",
   assetsDir: "static",
   lintOnSave: process.env.NODE_ENV === "development",
